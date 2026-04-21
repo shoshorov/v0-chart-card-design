@@ -222,11 +222,47 @@ export function ChartCard({
     label: d.label,
   }))
 
+  // Shared axis config
+  const yAxisConfig = [
+    {
+      disableLine: true,
+      disableTicks: true,
+    },
+  ]
+
+  const xAxisBaseConfig = {
+    disableLine: false,
+    disableTicks: false,
+  }
+
+  // Shared grid config: dashed horizontal lines only
+  const gridConfig = { horizontal: true, vertical: false }
+
   // Render chart based on type
   const renderChart = () => {
     const commonProps = {
       height: chartHeight,
-      margin: { top: 20, bottom: 30, left: 40, right: 20 },
+      margin: { top: 20, bottom: 30, left: 48, right: 20 },
+      grid: gridConfig,
+      sx: {
+        '& .MuiChartsGrid-horizontalLine': {
+          strokeDasharray: '4 4',
+          stroke: 'var(--border)',
+        },
+        '& .MuiChartsAxis-root.MuiChartsAxis-directionX .MuiChartsAxis-line': {
+          stroke: 'var(--border)',
+        },
+        '& .MuiChartsAxis-root.MuiChartsAxis-directionX .MuiChartsAxis-tick': {
+          stroke: 'var(--border)',
+        },
+        '& .MuiChartsAxis-root.MuiChartsAxis-directionY .MuiChartsAxis-line': {
+          display: 'none',
+        },
+        '& .MuiChartsAxis-tickLabel': {
+          fill: 'var(--muted-foreground)',
+          fontSize: '0.75rem',
+        },
+      },
       slotProps: {
         legend: {
           hidden: chartType !== 'pie',
@@ -239,7 +275,8 @@ export function ChartCard({
         return (
           <LineChart
             {...commonProps}
-            xAxis={[{ scaleType: 'point', data: xAxisData }]}
+            xAxis={[{ scaleType: 'point', data: xAxisData, ...xAxisBaseConfig }]}
+            yAxis={yAxisConfig}
             series={[
               { data: seriesData, color: colors[0], area: false },
               ...(hasSecondaryData
@@ -252,7 +289,8 @@ export function ChartCard({
         return (
           <BarChart
             {...commonProps}
-            xAxis={[{ scaleType: 'band', data: xAxisData }]}
+            xAxis={[{ scaleType: 'band', data: xAxisData, ...xAxisBaseConfig }]}
+            yAxis={yAxisConfig}
             series={[
               { data: seriesData, color: colors[0] },
               ...(hasSecondaryData
@@ -265,7 +303,8 @@ export function ChartCard({
         return (
           <LineChart
             {...commonProps}
-            xAxis={[{ scaleType: 'point', data: xAxisData }]}
+            xAxis={[{ scaleType: 'point', data: xAxisData, ...xAxisBaseConfig }]}
+            yAxis={yAxisConfig}
             series={[
               { data: seriesData, color: colors[0], area: true },
               ...(hasSecondaryData
