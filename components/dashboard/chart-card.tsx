@@ -3,7 +3,6 @@
 import * as React from 'react'
 import { LineChart } from '@mui/x-charts/LineChart'
 import { BarChart } from '@mui/x-charts/BarChart'
-import { AreaChart } from '@mui/x-charts/AreaChart'
 import { PieChart } from '@mui/x-charts/PieChart'
 import {
   MoreHorizontal,
@@ -264,7 +263,7 @@ export function ChartCard({
         )
       case 'area':
         return (
-          <AreaChart
+          <LineChart
             {...commonProps}
             xAxis={[{ scaleType: 'point', data: xAxisData }]}
             series={[
