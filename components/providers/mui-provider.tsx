@@ -2,35 +2,27 @@
 
 import * as React from "react"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import CssBaseline from "@mui/material/CssBaseline"
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter"
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "#3b82f6",
+      main: "#018940",
     },
     background: {
-      default: "#09090b",
-      paper: "#18181b",
+      default: "#F2F2F2",
+      paper: "#ffffff",
     },
     text: {
-      primary: "#fafafa",
-      secondary: "#a1a1aa",
+      primary: "#111111",
+      secondary: "#6b7280",
     },
+    divider: "#D6D6D6",
   },
   typography: {
     fontFamily: "inherit",
-  },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: {
-          backgroundColor: "transparent",
-        },
-      },
-    },
+    fontSize: 12,
   },
 })
 
@@ -38,7 +30,6 @@ export function MuiProvider({ children }: { children: React.ReactNode }) {
   return (
     <AppRouterCacheProvider options={{ key: "mui" }}>
       <ThemeProvider theme={theme}>
-        <CssBaseline enableColorScheme />
         {children}
       </ThemeProvider>
     </AppRouterCacheProvider>

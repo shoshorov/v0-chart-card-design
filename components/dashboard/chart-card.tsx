@@ -247,19 +247,19 @@ export function ChartCard({
       sx: {
         '& .MuiChartsGrid-horizontalLine': {
           strokeDasharray: '4 4',
-          stroke: 'var(--border)',
+          stroke: '#D6D6D6',
         },
         '& .MuiChartsAxis-root.MuiChartsAxis-directionX .MuiChartsAxis-line': {
-          stroke: 'var(--border)',
+          stroke: '#D6D6D6',
         },
         '& .MuiChartsAxis-root.MuiChartsAxis-directionX .MuiChartsAxis-tick': {
-          stroke: 'var(--border)',
+          stroke: '#D6D6D6',
         },
         '& .MuiChartsAxis-root.MuiChartsAxis-directionY .MuiChartsAxis-line': {
           display: 'none',
         },
         '& .MuiChartsAxis-tickLabel': {
-          fill: 'var(--muted-foreground)',
+          fill: '#6b7280',
           fontSize: '0.75rem',
         },
       },
