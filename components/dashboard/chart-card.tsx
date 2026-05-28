@@ -200,7 +200,7 @@ export function ChartCard({
   tagVariant = 'default',
   showTimePeriodSelector = false,
   chartHeight = 300,
-  colors = ['#018940', '#4ae683'],
+  colors = ['#8B1538', '#1E40AF'],
   errorMessage,
   onTimePeriodChange,
   onRefresh,
@@ -321,16 +321,20 @@ export function ChartCard({
                   }]
                 : []),
             ]}
+            slotProps={{
+              ...commonProps.slotProps,
+              popper: {
+                sx: {
+                  '& .MuiChartsTooltip-root': {
+                    backgroundColor: '#ffffff',
+                  },
+                },
+              },
+            }}
             sx={{
               ...commonProps.sx,
               '& .MuiAreaElement-root': {
-                fillOpacity: 0.25,
-              },
-              '& .MuiAreaElement-root:first-of-type': {
-                filter: `drop-shadow(0 0 1px ${colors[0]})`,
-              },
-              '& .MuiAreaElement-root:nth-of-type(2)': {
-                filter: `drop-shadow(0 0 1px ${colors[1]})`,
+                opacity: 0.3,
               },
             }}
           />
