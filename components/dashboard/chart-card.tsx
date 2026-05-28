@@ -308,11 +308,31 @@ export function ChartCard({
             xAxis={[{ scaleType: 'point', data: xAxisData, ...xAxisBaseConfig }]}
             yAxis={yAxisConfig}
             series={[
-              { data: seriesData, color: colors[0], area: true },
+              { 
+                data: seriesData, 
+                color: colors[0], 
+                area: true,
+              },
               ...(hasSecondaryData
-                ? [{ data: secondarySeriesData, color: colors[1], area: true }]
+                ? [{ 
+                    data: secondarySeriesData, 
+                    color: colors[1], 
+                    area: true,
+                  }]
                 : []),
             ]}
+            sx={{
+              ...commonProps.sx,
+              '& .MuiAreaElement-root': {
+                fillOpacity: 0.25,
+              },
+              '& .MuiAreaElement-root:first-of-type': {
+                filter: `drop-shadow(0 0 1px ${colors[0]})`,
+              },
+              '& .MuiAreaElement-root:nth-of-type(2)': {
+                filter: `drop-shadow(0 0 1px ${colors[1]})`,
+              },
+            }}
           />
         )
       case 'pie':
