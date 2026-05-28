@@ -57,7 +57,7 @@ import {
 } from '@/components/ui/empty'
 
 // Types
-export type TimePeriod = 'last-week' | 'last-30-days' | 'last-12-months'
+export type TimePeriod = 'last-week' | 'last-90-days' | 'last-30-days' | 'last-12-months'
 export type ChartType = 'line' | 'bar' | 'area' | 'pie'
 export type ChartState = 'idle' | 'loading' | 'error' | 'empty'
 
@@ -123,6 +123,8 @@ function getTimePeriodLabel(period: TimePeriod): string {
   switch (period) {
     case 'last-week':
       return 'Last Week'
+    case 'last-90-days':
+      return 'Last Quarter'
     case 'last-30-days':
       return 'Last 30 Days'
     case 'last-12-months':
@@ -473,6 +475,7 @@ export function ChartCard({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="last-week">Last Week</SelectItem>
+                  <SelectItem value="last-90-days">Last Quarter</SelectItem>
                   <SelectItem value="last-30-days">Last 30 Days</SelectItem>
                   <SelectItem value="last-12-months">Last 12 Months</SelectItem>
                 </SelectContent>
@@ -524,6 +527,12 @@ export function generateSampleData(period: TimePeriod): ChartDataPoint[] {
         { label: 'Sat', value: 170, secondaryValue: 150 },
         { label: 'Sun', value: 130, secondaryValue: 110 },
       ]
+    case 'last-90-days':
+      return Array.from({ length: 90 }, (_, i) => ({
+        label: `Day ${i + 1}`,
+        value: Math.floor(Math.random() * 250) + 75,
+        secondaryValue: Math.floor(Math.random() * 220) + 60,
+      }))
     case 'last-30-days':
       return Array.from({ length: 30 }, (_, i) => ({
         label: `Day ${i + 1}`,
